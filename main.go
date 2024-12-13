@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/go-git/go-git/v5"
 	"github.com/hashicorp/terraform-config-inspect/tfconfig"
@@ -11,9 +10,13 @@ import (
 func main() {
 	fmt.Println("vim-go")
 
-	_, _ := tfconfig.LoadModule(dir)
-	_, err := git.PlainClone("/tmp/foo", false, &git.CloneOptions{
-		URL:      "https://github.com/go-git/go-git",
-		Progress: os.Stdout,
-	})
+	dir := "test/sample-terraform/"
+	modules, dials := tfconfig.LoadModule(dir)
+	fmt.Println(modules)
+	fmt.Println(dials)
+	fmt.Println(git.PlainOpen)
+	//_, err := git.PlainClone("/tmp/foo", false, &git.CloneOptions{
+	//	URL:      "https://github.com/go-git/go-git",
+	//	Progress: os.Stdout,
+	//})
 }
