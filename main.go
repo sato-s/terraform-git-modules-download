@@ -12,7 +12,12 @@ func main() {
 
 	dir := "test/sample-terraform/"
 	modules, dials := tfconfig.LoadModule(dir)
-	fmt.Println(modules)
+	fmt.Println(modules.ModuleCalls)
+	for _, m := range modules.ModuleCalls {
+		fmt.Println(m.Source)
+		fmt.Println(m.Version)
+		fmt.Println(m.Name)
+	}
 	fmt.Println(dials)
 	fmt.Println(git.PlainOpen)
 	//_, err := git.PlainClone("/tmp/foo", false, &git.CloneOptions{
